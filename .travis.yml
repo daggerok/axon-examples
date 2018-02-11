@@ -15,7 +15,30 @@ before_install:
 - sudo apt install -y --no-install-recommends docker-ce python-pip curl jq libxml2-utils
 - sudo pip install docker-compose httpie
 - source <(curl -s https://raw.githubusercontent.com/daggerok/bash-functions/master/main.bash)
-- stop_any 5432 5672 27017
+- stop_any 5432 5672 27017 8080 9990 9999 5005
 script:
-- bash gradlew
+- export root=$(pwd)
+
+- cd ${root}/java-ee
+
 - bash mvnw
+- docker-compose -f docker-compose-maven.yaml build
+- docker-compose -f docker-compose-maven.yaml up &
+- sleep 40
+- http post :8080/app/facebook/create postId=post1
+- http put http://localhost:8080/app/facebook/post1/like
+- http put http://localhost:8080/app/facebook/post1/dislike
+- http put http://localhost:8080/app/facebook/post1/like
+- http put http://localhost:8080/app/facebook/post1/like
+- http :8080/app/posts/post1
+- http :8080/app/posts/post1/events
+- docker-compose -f docker-compose-maven.yaml down -v
+
+- bash gradlew
+- bash gradlew composeUp
+- sleep 20
+- http post :8080/app/facebook/create postId=post2
+- http put http://localhost:8080/app/facebook/post2/dislike
+- http :8080/app/posts
+- http :8080/app/posts/post2/events
+- bash gradlew composeDown

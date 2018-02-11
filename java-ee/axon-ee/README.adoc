@@ -1,0 +1,21 @@
+= axon-ee image:https://travis-ci.org/daggerok/axon-examples.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/axon-examples"]
+
+links:
+
+. https://docs.axonframework.org/v/3.1/part2/event-handling.html
+. http://www.axonframework.org/docs/2.0/command-handling.html#d4e412
+. https://stackoverflow.com/questions/28082145/axon-event-handler-in-another-class
+. https://rmannibucau.wordpress.com/2015/03/10/cdi-and-startup/
+. https://www.ibm.com/developerworks/cloud/library/cl-build-app-using-microservices-and-cqrs-trs/index.html
+
+generated using link:https://github.com/daggerok/generator-daggerok-fatjar/[daggerok-fatjar] yeoman generator
+
+inside:
+
+. java 8 based project
+. javaee 8.0
+. lombok (slf4j + logback logging)
+. vavr (javaslang)
+. support maven
+. support gradle
+. supports testing junit 4 / 5
