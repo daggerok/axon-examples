@@ -1,5 +1,7 @@
 = facebook image:https://travis-ci.org/daggerok/axon-examples.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/axon-examples"]
 
+//tag::content[]
+
 .flow
 ----
 http post :8080/app/facebook/create postId=post1
@@ -36,3 +38,5 @@ inside:
 . support maven
 . support gradle
 . docker / docker-compose support
+
+//end::content[]

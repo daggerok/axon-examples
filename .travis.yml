@@ -17,10 +17,10 @@ before_install:
 - source <(curl -s https://raw.githubusercontent.com/daggerok/bash-functions/master/main.bash)
 - stop_any 5432 5672 27017 8080 9990 9999 5005
 script:
+- bash gradlew clean asciidoctor
 - export root=$(pwd)
-
+#
 - cd ${root}/java-ee
-
 - bash mvnw
 - docker-compose -f docker-compose-maven.yaml build
 - docker-compose -f docker-compose-maven.yaml up &
