@@ -35,6 +35,11 @@ asciidoctor {
       "endpoint-url": "https://daggerok.github.io/axon-examples"
 }
 
+asciidoctor.doLast {
+  file("$asciidocBuildDir/html5/404.html").text = file("$buildDir/gitPublish/index.html")
+  file("$asciidocBuildDir/html5/.nojekyll").text = "\n"
+}
+
 gitPublish {
 
   repoUri = "git@github.com:daggerok/axon-examples.git"
