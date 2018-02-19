@@ -42,7 +42,8 @@ asciidoctor.doLast {
 
 gitPublish {
 
-  repoUri = "git@github.com:daggerok/axon-examples.git"
+//  repoUri = "git@github.com:daggerok/axon-examples.git"
+  repoUri = "https://github.com/daggerok/axon-examples.git"
   branch = "gh-pages"
 
   contents {
