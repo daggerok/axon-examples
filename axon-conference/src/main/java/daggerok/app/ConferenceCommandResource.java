@@ -21,7 +21,7 @@ public class ConferenceCommandResource {
 
   final CommandGateway commandGateway;
 
-  @PostMapping("/conf")
+  @PostMapping("/conference")
   public Map create(@Valid @RequestBody final CreateRequest req) {
     final String id = UUID.randomUUID().toString();
     commandGateway.send(new CreateConferenceCommand(id, req.getName()), LoggingCallback.INSTANCE);
@@ -29,7 +29,7 @@ public class ConferenceCommandResource {
   }
 
   @ResponseStatus(ACCEPTED)
-  @PostMapping("/conf/{id}")
+  @PostMapping("/conference/{id}")
   public void create(@PathVariable final String id, @Valid @RequestBody final AddTalkRequest req) {
     commandGateway.send(new AddTalkCommand(id, req.getTalk(), req.getSpeaker()), LoggingCallback.INSTANCE);
   }

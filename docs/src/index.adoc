@@ -14,6 +14,15 @@ Maksim Kostromin <daggerok@gmail.com>
 == Introduction
 include::includes/Introduction.adoc[]
 
+include::../../axon-conference/README.adoc[tags=content]
+
+.Important part in this app is tracking processor configuration:
+[source,kotlin]
+----
+include::../../axon-conference/src/main/java/daggerok/app/config/TrackingProcessorConfig.kt[tags=content]
+----
+
+
 include::../../java-ee/README.adoc[tags=content]
 
 == Other repos

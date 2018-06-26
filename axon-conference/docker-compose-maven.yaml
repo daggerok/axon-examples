@@ -2,18 +2,18 @@ version: "2.1"
 
 services:
 
-  gradle-axon-conf-app:
+  maven-axon-conference-app:
     build:
       context: .
-      dockerfile: gradle/Dockerfile
-    volumes: ["gradle-axon-conf-app-data:/home/appuser"]
+      dockerfile: .mvn/Dockerfile
+    volumes: ["maven-axon-conference-app-data:/home/appuser"]
     ports: ["8080:8080"]
     networks: [backing-services]
     #restart: unless-stopped
     #mem_limit: 786432000 # container limit: 700Mb (700 * 1024 * 1024)
 
 volumes:
-  gradle-axon-conf-app-data: {}
+  maven-axon-conference-app-data: {}
 
 networks:
   backing-services:

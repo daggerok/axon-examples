@@ -1,0 +1,14 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+  datasource:
+    url: jdbc:h2:file:./axon-conference;AUTO_SERVER=TRUE;MULTI_THREADED=TRUE;DB_CLOSE_ON_EXIT=FALSE;AUTO_RECONNECT=TRUE
+    username: axon-conference
+    password: axon-conference
+  jpa:
+    hibernate:
+      ddl-auto: update
+  h2:
+    console:
+      enabled: true

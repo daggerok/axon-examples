@@ -11,7 +11,7 @@ pipelines:
         services:
         - docker
         script:
-        - #export IMAGE_NAME=daggerok/axon-conf:$BITBUCKET_COMMIT
+        - #export IMAGE_NAME=daggerok/axon-conference:$BITBUCKET_COMMIT
         - #docker build -t $IMAGE_NAME .
         - #docker login --username $DOCKER_HUB_USERNAME --password $DOCKER_HUB_PASSWORD
         - #docker push $IMAGE_NAME

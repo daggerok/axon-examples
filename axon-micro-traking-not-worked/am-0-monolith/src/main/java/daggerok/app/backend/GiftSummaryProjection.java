@@ -3,6 +3,7 @@ package daggerok.app.backend;
 import lombok.RequiredArgsConstructor;
 import org.axonframework.config.EventHandlingConfiguration;
 import org.axonframework.queryhandling.QueryHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -18,7 +19,6 @@ import java.util.Optional;
 public class GiftSummaryProjection {
 
   final EntityManager em;
-  final EventHandlingConfiguration eventHandlingConfiguration;
 
   @Transactional
   @ExceptionHandler
@@ -37,17 +37,6 @@ public class GiftSummaryProjection {
     final int balance = Optional.ofNullable(cs.getRemainingBalance()).orElseThrow(NullPointerException::new);
     cs.setRemainingBalance(balance - evt.getAmount());
     em.persist(cs);
-  }
-
-  @PostConstruct
-  public void configTrackingEventProcessors() {
-    eventHandlingConfiguration.registerTrackingProcessor(getClass().getPackage().getName());
-    eventHandlingConfiguration.registerTrackingProcessor("daggerok.app.backend.SizeQuery");
-    eventHandlingConfiguration.registerTrackingProcessor("daggerok.app.backend.DataQuery");
-    eventHandlingConfiguration.registerTrackingProcessor("daggerok.app.backend");
-    eventHandlingConfiguration.registerTrackingProcessor("daggerok.app");
-    eventHandlingConfiguration.registerTrackingProcessor("daggerok.ui");
-    eventHandlingConfiguration.registerTrackingProcessor("daggerok");
   }
 
   @QueryHandler
