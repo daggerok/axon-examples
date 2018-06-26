@@ -21,8 +21,6 @@ before_install:
 - stop_any 5432 5672 27017 8080 9990 9999 5005
 
 script:
-- bash gradlew clean docs -Dorg.ajoberstar.grgit.auth.username=$GITHUB_USERNAME -Dorg.ajoberstar.grgit.auth.password=$GITHUB_PASSWORD
-#
 - export root=$(pwd)
 #
 - cd ${root}/axon-conference
