@@ -1,0 +1,3 @@
+rootProject.name = 'am-0-monolith'
+enableFeaturePreview 'STABLE_PUBLISHING'
+include 'docs'

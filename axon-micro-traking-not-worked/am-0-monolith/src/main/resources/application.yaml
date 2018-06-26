@@ -1,0 +1,11 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+  datasource:
+    url: jdbc:h2:file:./am-0-monolith;AUTO_SERVER=TRUE;MULTI_THREADED=TRUE;DB_CLOSE_ON_EXIT=FALSE;AUTO_RECONNECT=TRUE
+    username: am-0-monolith
+    password: am-0-monolith
+  h2:
+    console:
+      enabled: true

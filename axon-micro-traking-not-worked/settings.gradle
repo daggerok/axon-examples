@@ -1,0 +1,6 @@
+rootProject.name = 'axom-micro'
+enableFeaturePreview 'STABLE_PUBLISHING'
+include 'docs'
+/*
+include 'am-0-monolith'
+*/
