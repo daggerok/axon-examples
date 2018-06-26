@@ -70,7 +70,9 @@ script:
 - http :8080/app/posts/post2/events
 - bash gradlew composeDown
 
-before_deploy: ./gradlew documentation
+before_deploy:
+- cd $root
+- ./gradlew documentation
 
 deploy:
   provider: pages
