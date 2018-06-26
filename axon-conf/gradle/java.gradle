@@ -1,0 +1,13 @@
+allprojects {
+  apply plugin: 'java'
+
+  version = '0.0.1'
+  group = 'com.github.daggerok'
+  sourceCompatibility = targetCompatibility = "$javaVersion"
+
+  defaultTasks 'clean', 'build'
+
+  dependencies {
+    implementation "io.vavr:vavr:$vavrVersion"
+  }
+}

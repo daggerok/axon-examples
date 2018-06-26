@@ -1,0 +1,3 @@
+rootProject.name = 'axon-conf'
+enableFeaturePreview 'STABLE_PUBLISHING'
+include 'docs'

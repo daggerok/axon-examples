@@ -1,0 +1,11 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+  datasource:
+    url: jdbc:h2:file:./axon-conf;AUTO_SERVER=TRUE;MULTI_THREADED=TRUE;DB_CLOSE_ON_EXIT=FALSE;AUTO_RECONNECT=TRUE
+    username: axon-conf
+    password: axon-conf
+  h2:
+    console:
+      enabled: true
