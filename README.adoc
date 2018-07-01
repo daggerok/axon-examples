@@ -14,4 +14,7 @@ ifdef::backend-html5[- link:java-ee/[Axon Framework, JavaEE (JAX-RS, JPA), Kotli
 - link:https://github.com/daggerok/axon-snapshots/[Github: daggerok/axon-snapshots]
 - link:https://github.com/daggerok/axon/[Github: daggerok/axon]
 
+---
+- link:https://github.com/fransvanbuul/axonbare[Github: fransvanbuul/axonbare]
+
 //end::content[]
