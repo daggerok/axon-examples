@@ -32,14 +32,6 @@ script:
 - export root=$(pwd)
 #
 - cd ${root}/axon-conference
-- bash mvnw >/dev/null
-- java -jar target/*.jar &
-- wait_for 8080
-- http :8080/conference name=ololo
-- http :8080/conference
-- stop_any 8080
-#
-- cd ${root}/axon-conference
 - ./gradlew >/dev/null
 - bash build/libs/*.jar &
 - wait_for 8080

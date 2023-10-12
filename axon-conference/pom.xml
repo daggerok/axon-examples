@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="
-         http://maven.apache.org/POM/4.0.0
-         http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
   <groupId>com.github.daggerok</groupId>
   <artifactId>axon-conference</artifactId>
   <version>0.0.1</version>
   <packaging>jar</packaging>
-
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
     <hibernate.core.version>4.2.18.Final</hibernate.core.version>
-    <spring-cloud.version>Finchley.RC1</spring-cloud.version>
+    <spring-cloud.version>Finchley.SR4</spring-cloud.version>
     <spring-boot.version>2.0.3.RELEASE</spring-boot.version>
     <junit.platform.version>1.2.0</junit.platform.version>
     <jakson-kotlin.version>2.9.6</jakson-kotlin.version>
@@ -29,7 +24,6 @@
     <junit4.version>4.12</junit4.version>
     <vavr.version>0.9.2</vavr.version>
   </properties>
-
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -48,7 +42,6 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
-
   <repositories>
     <repository>
       <id>spring-milestones</id>
@@ -59,7 +52,6 @@
       </snapshots>
     </repository>
   </repositories>
-
   <dependencies>
     <dependency>
       <groupId>org.axonframework</groupId>
@@ -93,7 +85,6 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-jpa</artifactId>
     </dependency>
-
     <!-- In java we trust -->
     <dependency>
       <groupId>org.projectlombok</groupId>
@@ -106,7 +97,6 @@
       <artifactId>vavr</artifactId>
       <version>${vavr.version}</version>
     </dependency>
-
     <!-- Kotlin -->
     <dependency>
       <groupId>com.fasterxml.jackson.module</groupId>
@@ -123,7 +113,6 @@
       <artifactId>kotlin-reflect</artifactId>
       <version>${kotlin.version}</version>
     </dependency>
-
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-test-junit</artifactId>
@@ -140,7 +129,6 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
-
     <!-- junit 4 -->
     <dependency>
       <groupId>junit</groupId>
@@ -205,10 +193,8 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-
   <build>
     <defaultGoal>clean package</defaultGoal>
-
     <plugins>
       <plugin>
         <groupId>org.springframework.boot</groupId>
@@ -225,7 +211,6 @@
           </execution>
         </executions>
       </plugin>
-
       <plugin>
         <artifactId>kotlin-maven-plugin</artifactId>
         <groupId>org.jetbrains.kotlin</groupId>
@@ -300,7 +285,6 @@
           </execution>
         </executions>
       </plugin>
-
       <!-- junit -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -327,7 +311,6 @@
           <properties/>
         </configuration>
       </plugin>
-
       <!-- jgiven: `mvn verify` -->
       <plugin>
         <groupId>com.tngtech.jgiven</groupId>
@@ -347,7 +330,6 @@
       </plugin>
     </plugins>
   </build>
-
   <!-- mvn verify site -->
   <!-- generate findbugs html report `target/site/findbugs.html as part of maven-project-info-report -->
   <reporting>
@@ -369,13 +351,11 @@
           </reportPlugins>
         </configuration>
       </plugin>
-
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>findbugs-maven-plugin</artifactId>
         <version>3.0.5</version>
       </plugin>
-
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
@@ -386,7 +366,6 @@
       </plugin>
     </plugins>
   </reporting>
-
   <!-- mvn deploy -->
   <distributionManagement>
     <repository>
@@ -394,7 +373,6 @@
       <url>file://${project.basedir}/target/local-repo</url>
     </repository>
   </distributionManagement>
-
   <profiles>
     <profile>
       <id>docker</id>
@@ -432,7 +410,6 @@
         </plugins>
       </build>
     </profile>
-
     <!-- mvn -P docs process-resources -->
     <profile>
       <id>docs</id>
