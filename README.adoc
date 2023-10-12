@@ -1,4 +1,4 @@
-= axon-examples image:https://travis-ci.org/daggerok/axon-examples.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/axon-examples"]
+= axon-examples image:https://github.com/daggerok/axon-examples/actions/workflows/ci.yml/badge.svg["Build Status", link="https://github.com/daggerok/axon-examples/actions/workflows/ci.yml"]
 
 //tag::content[]
 
