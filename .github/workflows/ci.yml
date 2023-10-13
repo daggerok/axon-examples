@@ -35,7 +35,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
-      - run: sudo rm -rf ~/.m2/repository/daggerok ~/.m2/repository/io/github/daggerok
       - run: sudo apt install -yq httpie
       - run: bash mvnw -f axon-conference
       - run: java -jar ./axon-conference/target/*.jar &
@@ -66,10 +65,47 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
-      - run: sudo rm -rf ~/.m2/repository/daggerok ~/.m2/repository/io/github/daggerok
       - run: sudo apt install -yq httpie
       - run: bash gradlew -p ./axon-conference
       - run: bash ./axon-conference/build/libs/*.jar &
       - run: npm_config_yes=true npx wait-port 8080
       - run: http -I :8080/conference name=ololo
       - run: http -I :8080/conference
+  maven-java-ee-test:
+    if: github.event.inputs.trigger == ''
+      || !startsWith(github.event.inputs.trigger, 'm')
+      || !startsWith(github.event.inputs.trigger, 'M')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        id: java-cache
+        with:
+          path: |
+            ./.n*
+            ./.m2
+            ~/.m2/repository
+            !~/.m2/repository/daggerok
+            !~/.m2/repository/com/github/daggerok
+          key: ${{ runner.os }}-${{ hashFiles('**/pom.xml') }}
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: ${{ env.JAVA_VERSION }}
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - run: sudo apt install -yq httpie
+      - run: bash mvnw -f java-ee
+      - run: docker compose -f ./java-ee/docker-compose-maven.yaml build
+      - run: docker compose -f ./java-ee/docker-compose-maven.yaml up -d
+      - run: npm_config_yes=true npx wait-port 8080
+      - run: sleep 40
+      - run: http -I :8080/conference name=ololo
+      - run: http -I post :8080/app/facebook/create postId=post1
+      - run: http -I put http://localhost:8080/app/facebook/post1/like
+      - run: http -I put http://localhost:8080/app/facebook/post1/dislike
+      - run: http -I put http://localhost:8080/app/facebook/post1/like
+      - run: http -I put http://localhost:8080/app/facebook/post1/like
+      - run: http -I :8080/app/posts/post1
+      - run: http -I :8080/app/posts/post1/events

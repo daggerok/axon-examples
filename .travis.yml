@@ -31,28 +31,6 @@ script:
 #- bash gradlew clean docs -Dorg.ajoberstar.grgit.auth.username=daggerok -Dorg.ajoberstar.grgit.auth.password=$GITHUB_PASSWORD
 - export root=$(pwd)
 #
-- cd ${root}/axon-conference
-- ./gradlew >/dev/null
-- bash build/libs/*.jar &
-- wait_for 8080
-- http :8080/conference name=ololo
-- http :8080/conference
-- stop_any 8080
-#
-- cd ${root}/java-ee
-- bash mvnw
-- docker-compose -f docker-compose-maven.yaml build
-- docker-compose -f docker-compose-maven.yaml up &
-- sleep 40
-- http post :8080/app/facebook/create postId=post1
-- http put http://localhost:8080/app/facebook/post1/like
-- http put http://localhost:8080/app/facebook/post1/dislike
-- http put http://localhost:8080/app/facebook/post1/like
-- http put http://localhost:8080/app/facebook/post1/like
-- http :8080/app/posts/post1
-- http :8080/app/posts/post1/events
-- docker-compose -f docker-compose-maven.yaml down -v
-#
 - bash gradlew
 - bash gradlew composeUp
 - sleep 20

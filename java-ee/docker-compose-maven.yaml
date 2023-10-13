@@ -1,22 +1,17 @@
 version: "2.1"
-
 services:
-
   maven-axon-ee-app:
     build:
       context: ./axon-ee
       dockerfile: .mvn/Dockerfile
-    volumes: ["maven-axon-ee-app-data:/home/app"]
+    volumes: [ "maven-axon-ee-app-data:/home/app" ]
     ports:
     - "5005:5005"
     - "8080:8080"
     - "9990:9990"
-    networks: [backing-services]
+    networks: [ backing-services ]
     #mem_limit: 786432000 # container limit: 700Mb (700 * 1024 * 1024)
-
 volumes:
   maven-axon-ee-app-data: {}
-
 networks:
   backing-services:
-    driver: bridge
