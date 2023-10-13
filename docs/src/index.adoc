@@ -1,4 +1,4 @@
-= Axon examples {project-name} ({project-version}) image:https://travis-ci.org/daggerok/axon-examples.svg?branch=master["Build Status", link={github_url}]
+= Axon examples {project-name} ({project-version}) image:https://github.com/daggerok/axon-examples/actions/workflows/ci.yml/badge.svg["Build Status", link={github_url}]
 Maksim Kostromin <daggerok@gmail.com>
 {docdatetime}
 :toc:
