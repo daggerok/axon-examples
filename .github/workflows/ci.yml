@@ -24,10 +24,11 @@ jobs:
           path: |
             ./.n*
             ./.m2
+            ./.gradle
             ~/.m2/repository
             !~/.m2/repository/daggerok
             !~/.m2/repository/com/github/daggerok
-          key: ${{ runner.os }}-${{ hashFiles('**/pom.xml') }}
+          key: ${{ runner.os }}-${{ hashFiles('**/pom.xml', '**/*.gradle', '**/gradle.properties') }}
       - uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
@@ -54,10 +55,11 @@ jobs:
           path: |
             ./.n*
             ./.m2
+            ./.gradle
             ~/.m2/repository
             !~/.m2/repository/daggerok
             !~/.m2/repository/com/github/daggerok
-          key: ${{ runner.os }}-${{ hashFiles('**/pom.xml') }}
+          key: ${{ runner.os }}-${{ hashFiles('**/pom.xml', '**/*.gradle', '**/gradle.properties') }}
       - uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
@@ -84,10 +86,11 @@ jobs:
           path: |
             ./.n*
             ./.m2
+            ./.gradle
             ~/.m2/repository
             !~/.m2/repository/daggerok
             !~/.m2/repository/com/github/daggerok
-          key: ${{ runner.os }}-${{ hashFiles('**/pom.xml') }}
+          key: ${{ runner.os }}-${{ hashFiles('**/pom.xml', '**/*.gradle', '**/gradle.properties') }}
       - uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
@@ -121,10 +124,11 @@ jobs:
           path: |
             ./.n*
             ./.m2
+            ./.gradle
             ~/.m2/repository
             !~/.m2/repository/daggerok
             !~/.m2/repository/com/github/daggerok
-          key: ${{ runner.os }}-${{ hashFiles('**/pom.xml') }}
+          key: ${{ runner.os }}-${{ hashFiles('**/pom.xml', '**/*.gradle', '**/gradle.properties') }}
       - uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
