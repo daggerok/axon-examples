@@ -24,6 +24,7 @@ jobs:
           path: |
             ./.n*
             ./.m2
+            ./.docker
             ./.gradle
             ~/.m2/repository
             !~/.m2/repository/daggerok
@@ -40,8 +41,8 @@ jobs:
       - run: bash mvnw -f axon-conference
       - run: java -jar ./axon-conference/target/*.jar &
       - run: npm_config_yes=true npx wait-port 8080
-      - run: http -I :8080/conference name=ololo
-      - run: http -I :8080/conference
+      - run: http -Iv :8080/conference name=ololo
+      - run: http -Iv :8080/conference
   gradle-axon-conference-test:
     if: github.event.inputs.trigger == ''
       || !startsWith(github.event.inputs.trigger, 'm')
@@ -55,6 +56,7 @@ jobs:
           path: |
             ./.n*
             ./.m2
+            ./.docker
             ./.gradle
             ~/.m2/repository
             !~/.m2/repository/daggerok
@@ -71,8 +73,8 @@ jobs:
       - run: bash gradlew -p ./axon-conference
       - run: bash ./axon-conference/build/libs/*.jar &
       - run: npm_config_yes=true npx wait-port 8080
-      - run: http -I :8080/conference name=ololo
-      - run: http -I :8080/conference
+      - run: http -Iv :8080/conference name=ololo
+      - run: http -Iv :8080/conference
   maven-java-ee-test:
     if: github.event.inputs.trigger == ''
       || !startsWith(github.event.inputs.trigger, 'm')
@@ -86,6 +88,7 @@ jobs:
           path: |
             ./.n*
             ./.m2
+            ./.docker
             ./.gradle
             ~/.m2/repository
             !~/.m2/repository/daggerok
@@ -104,13 +107,13 @@ jobs:
       - run: docker compose -f ./java-ee/docker-compose-maven.yaml up -d
       - run: npm_config_yes=true npx wait-port 8080
       - run: sleep 40
-      - run: http -I post :8080/app/facebook/create postId=post1
-      - run: http -I put http://localhost:8080/app/facebook/post1/like
-      - run: http -I put http://localhost:8080/app/facebook/post1/dislike
-      - run: http -I put http://localhost:8080/app/facebook/post1/like
-      - run: http -I put http://localhost:8080/app/facebook/post1/like
-      - run: http -I :8080/app/posts
-      - run: http -I :8080/app/posts/post1/events
+      - run: http -Iv post :8080/app/facebook/create postId=post1
+      - run: http -Iv put http://localhost:8080/app/facebook/post1/like
+      - run: http -Iv put http://localhost:8080/app/facebook/post1/dislike
+      - run: http -Iv put http://localhost:8080/app/facebook/post1/like
+      - run: http -Iv put http://localhost:8080/app/facebook/post1/like
+      - run: http -Iv :8080/app/posts
+      - run: http -Iv :8080/app/posts/post1/events
   gradle-java-ee-test:
     if: github.event.inputs.trigger == ''
       || !startsWith(github.event.inputs.trigger, 'm')
@@ -124,6 +127,7 @@ jobs:
           path: |
             ./.n*
             ./.m2
+            ./.docker
             ./.gradle
             ~/.m2/repository
             !~/.m2/repository/daggerok
@@ -141,10 +145,10 @@ jobs:
       - run: bash gradlew -p java-ee composeUp
       - run: npm_config_yes=true npx wait-port 8080
       - run: sleep 20
-      - run: http -I post :8080/app/facebook/create postId=post2
-      - run: http -I put http://localhost:8080/app/facebook/post2/like
-      - run: http -I put http://localhost:8080/app/facebook/post2/dislike
-      - run: http -I put http://localhost:8080/app/facebook/post2/like
-      - run: http -I put http://localhost:8080/app/facebook/post2/like
-      - run: http -I :8080/app/posts
-      - run: http -I :8080/app/posts/post2/events
+      - run: http -Iv post :8080/app/facebook/create postId=post2
+      - run: http -Iv put http://localhost:8080/app/facebook/post2/like
+      - run: http -Iv put http://localhost:8080/app/facebook/post2/dislike
+      - run: http -Iv put http://localhost:8080/app/facebook/post2/like
+      - run: http -Iv put http://localhost:8080/app/facebook/post2/like
+      - run: http -Iv :8080/app/posts
+      - run: http -Iv :8080/app/posts/post2/events

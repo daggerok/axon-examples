@@ -1,7 +1,6 @@
 name: Deploy GitHub Pages documentation artifacts
 on:
-  push:
-    #branches: ["master"]
+  push: # go to Settings -> Environments => click on github-pages => Deployment branches and tags => select "No Restriction"
   workflow_dispatch:
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -31,6 +30,7 @@ jobs:
           path: |
             ./.n*
             ./.m2
+            ./.docker
             ./.gradle
             ~/.m2/repository
             !~/.m2/repository/daggerok
