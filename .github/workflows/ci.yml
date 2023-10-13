@@ -106,7 +106,7 @@ jobs:
       - run: http -I put http://localhost:8080/app/facebook/post1/dislike
       - run: http -I put http://localhost:8080/app/facebook/post1/like
       - run: http -I put http://localhost:8080/app/facebook/post1/like
-      - run: http -I :8080/app/posts/post1
+      - run: http -I :8080/app/posts
       - run: http -I :8080/app/posts/post1/events
   gradle-java-ee-test:
     if: github.event.inputs.trigger == ''
@@ -142,5 +142,5 @@ jobs:
       - run: http -I put http://localhost:8080/app/facebook/post2/dislike
       - run: http -I put http://localhost:8080/app/facebook/post2/like
       - run: http -I put http://localhost:8080/app/facebook/post2/like
-      - run: http -I :8080/app/posts/post2
+      - run: http -I :8080/app/posts
       - run: http -I :8080/app/posts/post2/events
