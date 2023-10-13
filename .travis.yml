@@ -30,15 +30,6 @@ env:
 script:
 #- bash gradlew clean docs -Dorg.ajoberstar.grgit.auth.username=daggerok -Dorg.ajoberstar.grgit.auth.password=$GITHUB_PASSWORD
 - export root=$(pwd)
-#
-- bash gradlew
-- bash gradlew composeUp
-- sleep 20
-- http post :8080/app/facebook/create postId=post2
-- http put http://localhost:8080/app/facebook/post2/dislike
-- http :8080/app/posts
-- http :8080/app/posts/post2/events
-- bash gradlew composeDown
 
 before_deploy:
 - cd $root

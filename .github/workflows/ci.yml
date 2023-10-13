@@ -101,7 +101,6 @@ jobs:
       - run: docker compose -f ./java-ee/docker-compose-maven.yaml up -d
       - run: npm_config_yes=true npx wait-port 8080
       - run: sleep 40
-      - run: http -I :8080/conference name=ololo
       - run: http -I post :8080/app/facebook/create postId=post1
       - run: http -I put http://localhost:8080/app/facebook/post1/like
       - run: http -I put http://localhost:8080/app/facebook/post1/dislike
@@ -109,3 +108,39 @@ jobs:
       - run: http -I put http://localhost:8080/app/facebook/post1/like
       - run: http -I :8080/app/posts/post1
       - run: http -I :8080/app/posts/post1/events
+  gradle-java-ee-test:
+    if: github.event.inputs.trigger == ''
+      || !startsWith(github.event.inputs.trigger, 'm')
+      || !startsWith(github.event.inputs.trigger, 'M')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        id: java-cache
+        with:
+          path: |
+            ./.n*
+            ./.m2
+            ~/.m2/repository
+            !~/.m2/repository/daggerok
+            !~/.m2/repository/com/github/daggerok
+          key: ${{ runner.os }}-${{ hashFiles('**/pom.xml') }}
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: ${{ env.JAVA_VERSION }}
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - run: sudo apt install -yq httpie
+      - run: bash gradlew -p java-ee
+      - run: bash gradlew -p java-ee composeUp
+      - run: npm_config_yes=true npx wait-port 8080
+      - run: sleep 20
+      - run: http -I post :8080/app/facebook/create postId=post2
+      - run: http -I put http://localhost:8080/app/facebook/post2/like
+      - run: http -I put http://localhost:8080/app/facebook/post2/dislike
+      - run: http -I put http://localhost:8080/app/facebook/post2/like
+      - run: http -I put http://localhost:8080/app/facebook/post2/like
+      - run: http -I :8080/app/posts/post2
+      - run: http -I :8080/app/posts/post2/events
